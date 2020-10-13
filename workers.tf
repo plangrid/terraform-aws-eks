@@ -314,7 +314,7 @@ resource "aws_iam_role_policy_attachment" "workers_AmazonEC2ContainerRegistryRea
 }
 
 resource "aws_iam_role_policy_attachment" "workers_additional_policies" {
-  count      = var.manage_worker_iam_resources ? length(var.workers_additional_policies) : 0
+  count      = var.manage_worker_iam_resources ? (length(var.workers_additional_policies) > 0 ? length(var.workers_additional_policies) : 0) : 0
   role       = aws_iam_role.workers[0].name
   policy_arn = var.workers_additional_policies[count.index]
 }
