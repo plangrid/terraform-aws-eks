@@ -42,7 +42,7 @@ data "aws_ami" "sami" {
   most_recent = true
 
   # Owner ID of ADSK SAMI
-  owners = ["996087537883"]
+  owners = ["${var.adsk_sami_owner_id}"]
 }
 
 data "aws_iam_policy_document" "cluster_assume_role_policy" {
