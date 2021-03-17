@@ -247,3 +247,9 @@ variable "manage_worker_iam_resources" {
   type        = bool
   default     = true
 }
+
+variable "adsk_sami_owner_id" {
+  description = "The account ID to use when fetching the ADSK SAMIs."
+  type        = string
+  default     = "996087537883"
+}

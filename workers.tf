@@ -139,7 +139,7 @@ resource "aws_launch_configuration" "workers" {
   image_id = lookup(
     var.worker_groups[count.index],
     "ami_id",
-    local.workers_group_defaults["ami_id"],
+    lookup(var.worker_groups[count.index], "use_adsk_sami", false) ? data.aws_ami.sami.id : local.workers_group_defaults["ami_id"],
   )
   instance_type = lookup(
     var.worker_groups[count.index],

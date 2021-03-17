@@ -28,6 +28,23 @@ data "aws_ami" "eks_worker" {
   owners = ["602401143452"]
 }
 
+####################################################
+# Fetch the latest ADSK SAMI for EKS
+####################################################
+# Version number should not contain the period. For example: 1.15 -> 115
+
+data "aws_ami" "sami" {
+  filter {
+    name   = "name"
+    values = ["SAMI-Linux-Amazon-2-EKS-${replace(var.cluster_version, ".", "")}-*"]
+  }
+
+  most_recent = true
+
+  # Owner ID of ADSK SAMI
+  owners = ["${var.adsk_sami_owner_id}"]
+}
+
 data "aws_iam_policy_document" "cluster_assume_role_policy" {
   statement {
     sid = "EKSClusterAssumeRole"
