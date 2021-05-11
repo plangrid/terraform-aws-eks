@@ -163,6 +163,12 @@ variable "workers_additional_policies" {
   default     = []
 }
 
+variable "workers_additional_policies_count" {
+  description = "# of Additional policies to be added to workers"
+  type        = number
+  default     = 0
+}
+
 variable "kubeconfig_aws_authenticator_command" {
   description = "Command to use to fetch AWS EKS credentials."
   type        = string
